@@ -8,7 +8,7 @@ resource "oci_core_virtual_network" "gatonet" {
 resource "oci_core_subnet" "gatonet_subnet" {
   cidr_block        = "10.0.1.0/24"
   display_name      = "public_gatonet"
-  dns_label         = "public-gatonet"
+  dns_label         = "gatopublic"
   security_list_ids = [oci_core_security_list.gatonet_guardinha.id]
   compartment_id    = var.compartment_ocid
   vcn_id            = oci_core_virtual_network.gatonet.id
