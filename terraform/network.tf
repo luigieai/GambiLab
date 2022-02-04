@@ -12,7 +12,7 @@ resource "oci_core_subnet" "gatonet_subnet" {
   security_list_ids = [oci_core_security_list.gatonet_guardinha.id]
   compartment_id    = var.compartment_ocid
   vcn_id            = oci_core_virtual_network.gatonet.id
-  route_table_id    = oci_core_route_table.test_route_table.id
+  route_table_id    = oci_core_route_table.gatonet_route_table.id
   dhcp_options_id   = oci_core_virtual_network.gatonet.default_dhcp_options_id
 }
 
