@@ -71,7 +71,7 @@ data "oci_core_images" "ubuntu_image" {
   compartment_id           = var.compartment_ocid
   operating_system         = "Canonical Ubuntu"
   operating_system_version = "20.4"
-  shape                    = var.arm_shape
+  //shape                    = var.arm_shape
   sort_by                  = "TIMECREATED"
   sort_order               = "DESC"
 }
