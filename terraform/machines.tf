@@ -20,7 +20,7 @@ resource "oci_core_instance" "arm_01" {
   }
 
   create_vnic_details {
-    subnet_id        = oci_core_subnet.test_subnet.id
+    subnet_id        = oci_core_subnet.gatonet_subnet.id
     display_name     = "primaryvnic"
     assign_public_ip = true
     hostname_label   = "tank01"
@@ -49,7 +49,7 @@ resource "oci_core_instance" "arm_02" {
   }
 
   create_vnic_details {
-    subnet_id        = oci_core_subnet.test_subnet.id
+    subnet_id        = oci_core_subnet.gatonet_subnet.id
     display_name     = "primaryvnic"
     assign_public_ip = true
     hostname_label   = "tank01"
