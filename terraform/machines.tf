@@ -12,7 +12,7 @@ resource "oci_core_instance" "arm_01" {
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
   display_name        = "tank01"
-  shape               = "VM.Standard.A1.Flex"
+  shape               = var.arm_shape
 
   shape_config {
     ocpus = 2
@@ -28,7 +28,7 @@ resource "oci_core_instance" "arm_01" {
 
   source_details {
     source_type = "image"
-    source_id   = var.ubuntuImage
+    source_id   = lookup(data.oci_core_images.ubuntu_image.images[0], "id")
     boot_volume_size_in_gbs = 65
   }
 
@@ -41,7 +41,7 @@ resource "oci_core_instance" "arm_02" {
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = var.compartment_ocid
   display_name        = "tank02"
-  shape               = "VM.Standard.A1.Flex"
+  shape               = var.arm_shape
 
   shape_config {
     ocpus = 2
@@ -57,7 +57,7 @@ resource "oci_core_instance" "arm_02" {
 
   source_details {
     source_type = "image"
-    source_id   = var.ubuntuImage
+    source_id   = lookup(data.oci_core_images.ubuntu_image.images[0], "id")
     boot_volume_size_in_gbs = 65
   }
 
@@ -66,6 +66,17 @@ resource "oci_core_instance" "arm_02" {
   }
 }
 
+// OS Images
+data "oci_core_images" "ubuntu_image" {
+  compartment_id           = var.compartment_ocid
+  operating_system         = "Canonical Ubuntu"
+  operating_system_version = "20.4"
+  shape                    = var.arm_shape
+  sort_by                  = "TIMECREATED"
+  sort_order               = "DESC"
+}
+
+// Server SSH Key
 resource "tls_private_key" "compute_ssh_key" {
   algorithm = "RSA"
   rsa_bits  = 2048
