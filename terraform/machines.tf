@@ -9,7 +9,7 @@ ARM:
 
 
 resource "oci_core_instance" "arm_01" {
-  availability_domain = data.oci_identity_availability_domain.ad.name
+  availability_domain = "US-SANJOSE-1-AD-1"
   compartment_id      = var.compartment_ocid
   display_name        = "tank01"
   shape               = var.arm_shape
@@ -38,7 +38,7 @@ resource "oci_core_instance" "arm_01" {
 }
 
 resource "oci_core_instance" "arm_02" {
-  availability_domain = data.oci_identity_availability_domain.ad.name
+  availability_domain = "US-SANJOSE-1-AD-1"
   compartment_id      = var.compartment_ocid
   display_name        = "tank02"
   shape               = var.arm_shape
