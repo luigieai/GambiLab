@@ -1,7 +1,7 @@
 variable "tenancy_ocid" {
 }
 
-variable "user_ocid" {
+variable "current_user_ocid" {
 }
 variable "ssh_public_key" {
 }
