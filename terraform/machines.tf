@@ -1,10 +1,11 @@
 /*
 Servers mapping initial idea:
 ARM: 
-  - 2 servers VM.Standard.A1.Flex
-  - 12GB RAM  
-  - 2 OCPU 
-  - 65GB storage 
+  - 1 servers VM.Standard.A1.Flex
+  - 24GB RAM  
+  - 4 OCPU 
+  - 130GB storage 
+  (one server because host capacity is almost exceeded so it's better to maintain one, and now i plan to run k8s anyways)
 */
 
 
