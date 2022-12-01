@@ -17,7 +17,8 @@ error metalLB need check config
 ```
 helm upgrade --install ingress-nginx ingress-nginx \
   --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
+  --namespace ingress-nginx --create-namespace \
+  --set "controller.extraArgs.enable-ssl-passthrough="
 ```
 
 ## Cert-Manager
@@ -76,11 +77,30 @@ spec:
               port:
                 number: 80
 ```
+### Internal domain
+https://cert-manager.io/docs/configuration/selfsigned/
 
-# LocalPath provisioner
+## LocalPath provisioner
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml
+```
+## Longhorn provisioner
+```
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.3.2/deploy/longhorn.yaml --namespace longhorn-system
+
+```
+## ArgoCS
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+Apply ingress in ./argocd/ingress.yaml
+Get initial admin password and delete after:
+```
+ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+ After annotating the output:
+ kubectl -n argocd delete secret argocd-initial-admin-secret
 ```
 
 # References
